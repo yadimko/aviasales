@@ -2,24 +2,16 @@ import React from 'react';
 import classes from './app.module.scss';
 import logo from './logo.svg'
 import s7logo from './S7 Logo.png'
+import FiltersBlock from '../filters-block/filters-block';
+
 
 export default function App() {
-
 
   return(
     <section className={classes['master-wrapper']}>
       <div className={classes.logotype}><img src={logo} alt='logo' /></div>
       <section className={classes['slave-wrapper']}>
-        <div className={classes['filter-block']}>
-          <p>КОЛИЧЕСТВО ПЕРЕСАДОК</p>
-          <ul>
-            <li><label><input type='checkbox' name='all'/>Все</label></li>
-            <li><label><input type='checkbox' name='all'/>Без пересадки</label></li>
-            <li><label><input type='checkbox' name='all'/>1 пересадка</label></li>
-            <li><label><input type='checkbox' name='all'/>2 пересадки</label></li>
-            <li><label><input type='checkbox' name='all'/>3 пересадки</label></li>
-          </ul>
-        </div>
+        <FiltersBlock />
         <div className={classes['ticket-wrapper']}>
           <div className={classes['button-block']}>
             <button className={classes['btn-left']} autoFocus>САМЫЙ ДЕШЕВЫЙ</button>
