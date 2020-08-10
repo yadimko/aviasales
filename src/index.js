@@ -1,12 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 import App from './components/app/app';
-import store from './store/store';
+import reducer from './store/reducer';
 
 
-const update = () => {
-  ReactDOM.render(<App />, document.getElementById('root'));
+const logger = store => next => action =>{
+      const result = next(action);
+      console.log(store.getState())
+      return result
 }
-update();
-store.subscribe(update)
+
+const store = createStore(reducer, applyMiddleware(logger, thunk));
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App/>
+  </Provider>,
+  document.getElementById('root')
+);
 

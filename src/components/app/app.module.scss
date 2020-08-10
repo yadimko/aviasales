@@ -180,6 +180,11 @@ body {
   }
 }
 
+.btn-active {
+  background: #2196F3;
+  color: #FFFFFF;
+}
+
 .ticket{
   min-height: 184px;
   width: 100%;
@@ -251,3 +256,9 @@ body {
   }
 }
 
+.ant-pagination-block {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+  margin-bottom: 0px;
+}
