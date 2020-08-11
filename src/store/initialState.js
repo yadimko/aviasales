@@ -7,9 +7,10 @@ const initialStore = {
   twoTransfers: true,
   threeTransfers: true,
   ticketsFromAPI: [],
+  ticketsBeforeRender: [],
   tickets: [],
-  isFetching: true,
-  error: false
-}
+  loading: false,
+  error: false,
+};
 
 export default initialStore;

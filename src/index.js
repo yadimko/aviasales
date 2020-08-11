@@ -6,19 +6,17 @@ import thunk from 'redux-thunk';
 import App from './components/app/app';
 import reducer from './store/reducer';
 
-
-const logger = store => next => action =>{
-      const result = next(action);
-      console.log(store.getState())
-      return result
-}
+const logger = (store) => (next) => (action) => {
+  const result = next(action);
+  console.log(store.getState());
+  return result;
+};
 
 const store = createStore(reducer, applyMiddleware(logger, thunk));
 
 ReactDOM.render(
   <Provider store={store}>
-    <App/>
+    <App />
   </Provider>,
   document.getElementById('root')
 );
-
