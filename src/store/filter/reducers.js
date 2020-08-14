@@ -1,4 +1,4 @@
-import initialStore from './initialState';
+import initialStore from '../initialState';
 
 const sortingByPrice = (array) => {
   return array.sort((prev, next) => {
@@ -22,10 +22,10 @@ const sortingByTime = (array) => {
   })
 }
 
-const filterState = (isChecked, state, num) => {
+const filterState = (bool, state, num) => {
   const {sortByPrice, sortByTime} = state;
   let array = null;
-  if(isChecked){
+  if(bool){
     array = [
       ...state.ticketsBeforeRender.filter((el) => {
         if (el.segments[0].stops.length !== num && el.segments[1].stops.length !== num) {
@@ -104,30 +104,8 @@ const transAll = (arr) => {
 
 };
 
-export default function reducer(state = initialStore, action) {
+export default function filterReducer(state = initialStore, action) {
   switch (action.type) {
-    case 'FETCH_POSTS_REQUEST': {
-      return {
-        ...state,
-        loading: true,
-      };
-    }
-
-    case 'FETCH_POSTS_FAILURE': {
-      return {
-        ...state,
-        error: true,
-      };
-    }
-
-    case 'FETCH_POSTS_SUCCESS': {
-      return {
-        ...state,
-        ticketsFromAPI: [...state.ticketsFromAPI.concat(action.payload)],
-        ticketsBeforeRender: [...state.ticketsFromAPI],
-      };
-    }
-
     case 'ALL_TRANSFERS_FILTER':
       return transAll(state);
 

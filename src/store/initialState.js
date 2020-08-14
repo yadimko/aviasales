@@ -1,11 +1,13 @@
 const initialStore = {
   sortByPrice: false,
   sortByTime: false,
-  allTransfers: true,
-  withoutTransfers: true,
-  oneTransfer: true,
-  twoTransfers: true,
-  threeTransfers: true,
+  transfers: {
+    allTransfers: true,
+    withoutTransfers: true,
+    oneTransfer: true,
+    twoTransfers: true,
+    threeTransfers: true,
+  },
   ticketsFromAPI: [],
   ticketsBeforeRender: [],
   tickets: [],

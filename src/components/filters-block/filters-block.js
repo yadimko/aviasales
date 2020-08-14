@@ -5,16 +5,11 @@ import classes from '../app/app.module.scss';
 import * as actions from '../../store/actionCreators';
 
 const FiltersBlock = ({
-  withoutTransfers,
-  oneTransfer,
-  twoTransfers,
-  threeTransfers,
+  transfers,
   ALL_TRANSFERS_FILTER,
-  WITHOUT_TRANSFERS_FILTER,
-  ONE_TRANSFER_FILTER,
-  TWO_TRANSFERS_FILTER,
-  THREE_TRANSFER_FILTER,
+  TRANSFERS_FILTER,
 }) => {
+  const {withoutTransfers, oneTransfer, twoTransfers, threeTransfers} = transfers;
   return (
     <div className={classes['filter-block']}>
       <p>КОЛИЧЕСТВО ПЕРЕСАДОК</p>
@@ -32,23 +27,23 @@ const FiltersBlock = ({
         </li>
         <li>
           <label>
-            <input type="checkbox" name="zero" checked={withoutTransfers} onChange={WITHOUT_TRANSFERS_FILTER} />
+            <input type="checkbox" name="zero" checked={withoutTransfers} onChange={() => {TRANSFERS_FILTER('withoutTransfers', 0)}} />
             Без пересадки
           </label>
         </li>
         <li>
           <label>
-            <input type="checkbox" name="one" checked={oneTransfer} onChange={ONE_TRANSFER_FILTER} />1 пересадка
+            <input type="checkbox" name="one" checked={oneTransfer} onChange={() => {TRANSFERS_FILTER('oneTransfer', 1)}} />1 пересадка
           </label>
         </li>
         <li>
           <label>
-            <input type="checkbox" name="two" checked={twoTransfers} onChange={TWO_TRANSFERS_FILTER} />2 пересадки
+            <input type="checkbox" name="two" checked={twoTransfers} onChange={() => {TRANSFERS_FILTER('twoTransfers', 2)}} />2 пересадки
           </label>
         </li>
         <li>
           <label>
-            <input type="checkbox" name="three" checked={threeTransfers} onChange={THREE_TRANSFER_FILTER} />3 пересадки
+            <input type="checkbox" name="three" checked={threeTransfers} onChange={() => {TRANSFERS_FILTER('threeTransfers', 3)}} />3 пересадки
           </label>
         </li>
       </ul>
@@ -58,23 +53,14 @@ const FiltersBlock = ({
 
 const mapStateToProps = (state) => {
   return {
-    withoutTransfers: state.withoutTransfers,
-    oneTransfer: state.oneTransfer,
-    twoTransfers: state.twoTransfers,
-    threeTransfers: state.threeTransfers,
+    transfers: state.transfers
   };
 };
 
 FiltersBlock.propTypes = {
-  withoutTransfers: PropTypes.bool.isRequired,
-  oneTransfer: PropTypes.bool.isRequired,
-  twoTransfers: PropTypes.bool.isRequired,
-  threeTransfers: PropTypes.bool.isRequired,
+  transfers: PropTypes.objectOf(PropTypes.bool).isRequired,
   ALL_TRANSFERS_FILTER: PropTypes.func.isRequired,
-  WITHOUT_TRANSFERS_FILTER: PropTypes.func.isRequired,
-  ONE_TRANSFER_FILTER: PropTypes.func.isRequired,
-  TWO_TRANSFERS_FILTER: PropTypes.func.isRequired,
-  THREE_TRANSFER_FILTER: PropTypes.func.isRequired,
+  TRANSFERS_FILTER: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, actions)(FiltersBlock);
